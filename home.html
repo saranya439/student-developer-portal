@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sai Saranya's developer portal" />
+    <title>Home | Sai Saranya</title>
+
+    <style>
+      :root {
+        --bg: #f7f7f5;
+        --surface: #ffffff;
+        --surface-soft: #f1f1ee;
+        --text: #18181b;
+        --text-muted: #71717a;
+        --border: #e4e4e7;
+        --accent: #18181b;
+        --accent-text: #ffffff;
+        --shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+      }
+
+      body.dark {
+        --bg: #18181b;
+        --surface: #222225;
+        --surface-soft: #2a2a2e;
+        --text: #f4f4f5;
+        --text-muted: #a1a1aa;
+        --border: #3f3f46;
+        --accent: #f4f4f5;
+        --accent-text: #18181b;
+        --shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        transition:
+          background 0.25s ease,
+          color 0.25s ease;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 8%;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+      }
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .logo span {
+        color: var(--text-muted);
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 26px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .theme-toggle {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        cursor: pointer;
+        color: var(--text);
+        background: var(--surface);
+        font-size: 1rem;
+      }
+
+      .theme-toggle:hover {
+        background: var(--surface-soft);
+      }
+
+      main {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 90px 6%;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 70px;
+      }
+
+      .eyebrow {
+        margin-bottom: 18px;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 700px;
+        margin-bottom: 22px;
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        line-height: 1.05;
+        letter-spacing: -2px;
+      }
+
+      h1 span {
+        color: var(--text-muted);
+      }
+
+      .hero-text {
+        max-width: 600px;
+        margin-bottom: 32px;
+        color: var(--text-muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        padding: 12px 20px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .button-primary {
+        color: var(--accent-text);
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .button-secondary {
+        background: var(--surface);
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .profile-card {
+        padding: 32px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .profile-card h2 {
+        margin-bottom: 14px;
+        font-size: 1.4rem;
+      }
+
+      .profile-card p {
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+
+      .line {
+        height: 1px;
+        margin: 24px 0;
+        background: var(--border);
+      }
+
+      .quick-info {
+        display: grid;
+        gap: 15px;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      .info-item strong {
+        color: var(--text);
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 28px 8%;
+        border-top: 1px solid var(--border);
+        color: var(--text-muted);
+        text-align: center;
+        background: var(--surface);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 800px) {
+        .navbar {
+          padding: 16px 5%;
+        }
+
+        .nav-right {
+          gap: 15px;
+        }
+
+        .nav-links {
+          gap: 12px;
+        }
+
+        main {
+          padding: 65px 5%;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .nav-links li:nth-child(2) {
+          display: none;
+        }
+
+        h1 {
+          letter-spacing: -1px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a class="logo" href="/">SS<span>.</span></a>
+
+      <div class="nav-right">
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/project">Projects</a></li>
+            <li><a href="/registration">Register</a></li>
+          </ul>
+        </nav>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          ☀️
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Developer Portal</p>
+
+          <h1>
+            Hello, I'm
+            <span>Sai Saranya.</span>
+          </h1>
+
+          <p class="hero-text">
+            Welcome to my personal developer portal — a simple space to explore
+            my projects, skills, and work in technology.
+          </p>
+
+          <div class="buttons">
+            <a class="button button-primary" href="/project"> View Projects </a>
+
+            <a class="button button-secondary" href="/registration">
+              Register
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h2>About This Portal</h2>
+
+          <p>
+            This website is built using Node.js and HTML to demonstrate a simple
+            multi-page web application.
+          </p>
+
+          <div class="line"></div>
+
+          <div class="quick-info">
+            <div class="info-item">
+              <span>Focus</span>
+              <strong>Web Development</strong>
+            </div>
+
+            <div class="info-item">
+              <span>Technology</span>
+              <strong>Node.js</strong>
+            </div>
+
+            <div class="info-item">
+              <span>Pages</span>
+              <strong>3</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Sai Saranya. Built with Node.js and HTML.</p>
+    </footer>
+
+    <script>
+      const body = document.body;
+      const themeToggle = document.getElementById("themeToggle");
+
+      const savedTheme = localStorage.getItem("theme");
+
+      if (savedTheme === "dark") {
+        body.classList.add("dark");
+        themeToggle.textContent = "🌙";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+
+        const isDark = body.classList.contains("dark");
+
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+
+        themeToggle.textContent = isDark ? "🌙" : "☀️";
+      });
+    </script>
+  </body>
+</html>

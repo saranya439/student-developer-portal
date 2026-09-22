@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Registration page for Sai Saranya's developer portal"
+    />
+    <title>Registration | Sai Saranya</title>
+
+    <style>
+      :root {
+        --bg: #f7f7f5;
+        --surface: #ffffff;
+        --surface-soft: #f1f1ee;
+        --text: #18181b;
+        --text-muted: #71717a;
+        --border: #e4e4e7;
+        --accent: #18181b;
+        --accent-text: #ffffff;
+        --input-bg: #ffffff;
+        --success: #166534;
+        --success-bg: #dcfce7;
+        --shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+      }
+
+      body.dark {
+        --bg: #18181b;
+        --surface: #222225;
+        --surface-soft: #2a2a2e;
+        --text: #f4f4f5;
+        --text-muted: #a1a1aa;
+        --border: #3f3f46;
+        --accent: #f4f4f5;
+        --accent-text: #18181b;
+        --input-bg: #18181b;
+        --success: #86efac;
+        --success-bg: #14532d;
+        --shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        transition:
+          background 0.25s ease,
+          color 0.25s ease;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 8%;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+      }
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .logo span {
+        color: var(--text-muted);
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 26px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .theme-toggle {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        cursor: pointer;
+        color: var(--text);
+        background: var(--surface);
+        font-size: 1rem;
+      }
+
+      .theme-toggle:hover {
+        background: var(--surface-soft);
+      }
+
+      main {
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 65px 6%;
+      }
+
+      .intro {
+        margin-bottom: 35px;
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin-bottom: 12px;
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .intro h1 {
+        margin-bottom: 12px;
+        font-size: 2.8rem;
+        letter-spacing: -1px;
+      }
+
+      .intro p {
+        color: var(--text-muted);
+      }
+
+      .success-message {
+        display: none;
+        margin-bottom: 20px;
+        padding: 14px 16px;
+        border: 1px solid var(--success);
+        border-radius: 8px;
+        color: var(--success);
+        background: var(--success-bg);
+        line-height: 1.5;
+      }
+
+      .success-message.show {
+        display: block;
+      }
+
+      .form-card {
+        padding: 35px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        margin-bottom: 8px;
+        color: var(--text);
+        font-size: 0.88rem;
+        font-weight: 600;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        outline: none;
+        color: var(--text);
+        background: var(--input-bg);
+        font: inherit;
+      }
+
+      input::placeholder {
+        color: var(--text-muted);
+      }
+
+      input:focus,
+      select:focus {
+        border-color: var(--text-muted);
+        box-shadow: 0 0 0 3px rgba(113, 113, 122, 0.12);
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 3px;
+      }
+
+      .checkbox-group input {
+        width: auto;
+        margin-top: 4px;
+      }
+
+      .checkbox-group label {
+        margin: 0;
+        color: var(--text-muted);
+        font-weight: 400;
+        line-height: 1.5;
+      }
+
+      .submit-button {
+        width: 100%;
+        margin-top: 8px;
+        padding: 13px;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        cursor: pointer;
+        color: var(--accent-text);
+        background: var(--accent);
+        font: inherit;
+        font-weight: 700;
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .submit-button:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+      }
+
+      .back-link {
+        display: block;
+        margin-top: 22px;
+        color: var(--text-muted);
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      .back-link:hover {
+        color: var(--text);
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 28px 8%;
+        border-top: 1px solid var(--border);
+        color: var(--text-muted);
+        text-align: center;
+        background: var(--surface);
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 700px) {
+        .navbar {
+          padding: 16px 5%;
+        }
+
+        .nav-right {
+          gap: 15px;
+        }
+
+        .nav-links {
+          gap: 12px;
+        }
+
+        main {
+          padding: 50px 5%;
+        }
+
+        .form-card {
+          padding: 24px;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .full-width {
+          grid-column: auto;
+        }
+
+        .intro h1 {
+          font-size: 2.3rem;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .nav-links li:nth-child(2) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <a class="logo" href="/"> SS<span>.</span> </a>
+
+      <div class="nav-right">
+        <nav>
+          <ul class="nav-links">
+            <li>
+              <a href="/">Home</a>
+            </li>
+
+            <li>
+              <a href="/project">Projects</a>
+            </li>
+
+            <li>
+              <a href="/registration">Register</a>
+            </li>
+          </ul>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="Toggle theme"
+        >
+          ☀️
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">Registration</p>
+
+        <h1>Create Your Profile</h1>
+
+        <p>Join the developer community and create your profile.</p>
+      </section>
+
+      <div class="success-message" id="successMessage">
+        Registration successful! Your account has been created.
+      </div>
+
+      <section class="form-card">
+        <form action="/registration" method="post">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName"> Full Name </label>
+
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email"> Email Address </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone"> Phone Number </label>
+
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="college"> College / Institution </label>
+
+              <input
+                type="text"
+                id="college"
+                name="college"
+                placeholder="Enter your institution"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="course"> Course </label>
+
+              <select id="course" name="course" required>
+                <option value="">Select your course</option>
+
+                <option value="cse">Computer Science and Engineering</option>
+
+                <option value="it">Information Technology</option>
+
+                <option value="ece">
+                  Electronics and Communication Engineering
+                </option>
+
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="year"> Year of Study </label>
+
+              <select id="year" name="year" required>
+                <option value="">Select year</option>
+
+                <option value="1">First Year</option>
+
+                <option value="2">Second Year</option>
+
+                <option value="3">Third Year</option>
+
+                <option value="4">Fourth Year</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="password"> Password </label>
+
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword"> Confirm Password </label>
+
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                required
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required />
+
+                <label for="terms">
+                  I agree to the terms and confirm that the information provided
+                  is accurate.
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <button class="submit-button" type="submit">
+                Create Account
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <a class="back-link" href="/project"> ← Back to Projects </a>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Sai Saranya. Built with Node.js and HTML.</p>
+    </footer>
+
+    <script>
+      const body = document.body;
+      const themeToggle = document.getElementById("themeToggle");
+
+      const savedTheme = localStorage.getItem("theme");
+
+      if (savedTheme === "dark") {
+        body.classList.add("dark");
+        themeToggle.textContent = "🌙";
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+
+        const isDark = body.classList.contains("dark");
+
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+
+        themeToggle.textContent = isDark ? "🌙" : "☀️";
+      });
+
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.get("success") === "true") {
+        document.getElementById("successMessage").classList.add("show");
+      }
+    </script>
+  </body>
+</html>
